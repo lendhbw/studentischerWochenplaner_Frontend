@@ -1,0 +1,123 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>studentischer Wochenplaner</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <script src="../js/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+
+            <h1 class="logo">stuPlan</h1>
+
+            <!-- Desktop Navigation -->
+            <nav class="nav-links">
+                <!-- TODO add links-->
+                <a href="../Homepage.html" class="active">Startseite</a>
+                <a href="#">Kalender</a>
+                <a href="#">Einkaufslisten</a>
+                <a href="#">To-Do Listen</a>
+            </nav>
+
+            <!-- Aktionen Desktop -->
+            <div class="actions">
+                <!-- TODO add links-->
+                <button id="darkmode-toggle" aria-label="Theme umschalten">🌙</button>
+                <a href="#" class="btn">Anmelden</a>
+                <a href="#" class="btn-primary">Registrieren</a>
+            </div>
+
+            <!-- Burger Button für Mobile -->
+            <button class="burger" id="burger-btn" aria-label="Menü öffnen">☰</button>
+        </div>
+        <!-- Mobile Menü -->
+        <nav class="mobile-menu" id="mobile-menu">
+            <!-- TODO add links-->
+            <a href="../Homepage.html">Startseite</a>
+            <a href="#">Kalender</a>
+            <a href="#">Einkaufslisten</a>
+            <a href="#" id="darkmode-toggle-mobile">🌙 Darkmode</a>
+            <a href="#" class="btn">Anmelden</a>
+            <a href="#" class="btn-primary">Registrieren</a>
+        </nav>
+    </header>
+
+
+    <!-- Login Formular -->
+    <main class="form-container">
+        <div class="form-card">
+            <h2>Anmelden</h2>
+            <p class="form-description">Melden Sie sich mit Ihren Zugangsdaten an</p>
+
+            <form id="login" novalidate>
+                <label for="email">E-Mail</label>
+                <input type="email" id="userEmail" placeholder="ihre@email.de" required>
+                <span class="error-message" id="error-userEmail" aria-live="polite"></span>
+
+                <label for="password">Passwort</label>
+                <input type="password" id="userPassword" placeholder="Ihr Passwort" required minlength="6">
+                <span class="error-message" id="error-userPassword" aria-live="polite"></span>
+
+                <button type="submit" id="loginButton" class="btn-primary full-width">Anmelden</button>
+
+                <p class="form-footer">
+                    <!-- TODO Link zur Registrierung anpassen -->
+                    Noch kein Konto? <a href="#">Hier registrieren</a>
+                </p>
+            </form>
+
+        </div>
+    </main>
+
+
+    <script src="../js/Nav-Dark-Script.js"></script>
+    <script src="../js/formVal.js"></script>
+    <!--TODO Anpassen an HTML-->
+    <script>
+        $("#loginButton").click(function (e) {
+            e.preventDefault(); // verhindert direktes Submitten
+
+            //Form Validierung
+            if (!validateLoginForm()) {
+                console.warn("Form validation failed.");
+                return;
+            }
+
+            // User Objekt erstellen
+            var loginUser = {
+                email: $("#userEmail").val(),
+                password: $("#userPassword").val()
+            };
+
+            // AJAX POST von loginUser an BFF
+            console.log("Sending post on login to BFF with user ...");
+            console.log(loginUser);
+            $.ajax({
+
+                //TODO HEROKU anlegen und URL anpassen
+                url: 'https://arcane-citadel-49909-0e3d7f7d2fb5.herokuapp.com/api/login',
+                type: 'post',
+                dataType: 'json',
+                contentType: 'application/json',
+                success: function (data) {
+                    alert('You are now logged on.');
+                    localStorage.setItem('stuplantoken', data.token);
+                },
+                data: JSON.stringify(loginUser),
+                processData: false,
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert('I could not log you in.');
+                    localStorage.setItem('stuplantoken', '123');
+                }
+            });
+        });</script>
+
+
+</body>
+</html>
