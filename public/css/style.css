@@ -1,0 +1,243 @@
+/* ============================================ Grundfarben ============================================ */
+:root {
+    --primary: #3b82f6;
+    --background: #f9f9fb;
+    --card: #ffffff;
+    --text: #1f2937;
+    --muted: #6b7280;
+}
+
+/* ==== Body ==== */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+    background: var(--background);
+    color: var(--text);
+    line-height: 1.5;
+}
+
+h1, h2, h3 {
+    margin: 0 0 0.5rem;
+}
+
+main {
+    max-width: 1100px;
+    margin: 2rem auto;
+    padding: 1rem;
+}
+
+/* ============================================ Navbar ============================================ */
+.navbar {
+    background: var(--card);
+    border-bottom: 1px solid #e5e7eb;
+    padding: 0.5rem 1rem;
+}
+
+.nav-container {
+    max-width: 1100px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: var(--primary);
+}
+
+.nav-links {
+    display: flex;
+    gap: 1.5rem;
+}
+
+    .nav-links a {
+        text-decoration: none;
+        color: var(--muted);
+        font-weight: 500;
+        padding: 0.3rem 0.6rem;
+        border-radius: 6px;
+        transition: all 0.2s;
+    }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary);
+            background: rgba(59, 130, 246, 0.1);
+        }
+
+/* ==== Burger Button ==== */
+.burger {
+    display: none;
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text);
+}
+
+/* ==== Mobile Menü Overlay ==== */
+.mobile-menu {
+    display: none;
+    position: absolute;
+    top: 60px; 
+    left: 0;
+    right: 0;
+    background: var(--card);
+    border-top: 1px solid #e5e7eb;
+    padding: 1rem;
+    flex-direction: column;
+    gap: 1rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    animation: slideDown 0.3s ease;
+    z-index: 1000;
+}
+
+    .mobile-menu a,
+    .mobile-menu button {
+        text-decoration: none;
+        font-size: 1rem;
+        font-weight: 600;
+        border: none;
+        background: none;
+        color: var(--text);
+        cursor: pointer;
+        text-align: left;
+        padding: 0.5rem 0;
+        border-radius: 4px;
+    }
+
+        .mobile-menu a:hover,
+        .mobile-menu button:hover {
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--primary);
+        }
+
+/* ============================================ Buttons ============================================ */
+.actions .btn,
+.actions .btn-primary {
+    text-decoration: none;
+    padding: 0.4rem 0.9rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.actions .btn {
+    background: white;
+    color: var(--primary);
+    border: 1px solid var(--primary);
+}
+
+    .actions .btn:hover {
+        background: rgba(59, 130, 246, 0.05);
+    }
+
+.actions .btn-primary {
+    background: var(--primary);
+    color: white;
+    border: none;
+}
+
+    .actions .btn-primary:hover {
+        background: #2563eb;
+    }
+
+
+/* ============================================ Karten ============================================ */
+.card-grid {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    margin-top: 2rem;
+}
+
+.card {
+    background: var(--card);
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    transition: transform 0.2s;
+}
+
+    .card:hover {
+        transform: translateY(-3px);
+    }
+
+    .card h3 {
+        margin-top: 0;
+        color: var(--primary);
+    }
+
+    .card p {
+        color: var(--muted);
+        font-size: 0.9rem;
+    }
+
+
+
+/* ============================================ Darkmode ============================================ */
+body.dark {
+    background: #121212;
+    color: #f1f1f1;
+}
+
+    body.dark .navbar {
+        background: #1f2937;
+        border-color: #374151;
+    }
+
+    body.dark .nav-links a {
+        color: #9ca3af;
+    }
+
+    body.dark .card {
+        background: #1f2937;
+        color: #f1f1f1;
+    }
+    /* ==== Darkmode für Burger-Menü ==== */
+    body.dark .mobile-menu {
+        background: #1f2937; /* dunkles Grau */
+        border-color: #374151;
+    }
+
+        body.dark .mobile-menu a {
+            color: #e5e7eb; /* hellgraue Links */
+        }
+
+            body.dark .mobile-menu a:hover {
+                background: rgba(59, 130, 246, 0.2);
+                color: #3b82f6;
+            }
+
+    /* Burger-Button im Darkmode */
+    body.dark .burger {
+        color: #f9f9fb; /* weiß im Darkmode */
+    }
+
+
+/* ============================================ Responsive Navigation ============================================ */
+@media (max-width: 840px) {
+    /* Desktop-Navigation verstecken */
+    .nav-links,
+    .actions {
+        display: none;
+    }
+    /* ==== Burger Button ==== */
+    .burger {
+        display: block;
+        font-size: 1.8rem;
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: var(--text);
+        padding: 0.3rem 0.6rem;
+        border-radius: 6px;
+    }
+
+        .burger:hover {
+            background: rgba(59, 130, 246, 0.1);
+        }
+}

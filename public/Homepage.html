@@ -4,18 +4,71 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>studentischer Wochenplaner - Startseite</title>
+    <link rel="stylesheet" href="css/style.css" />
 </head>
 
 
 
 <body>
+    <!-- Header -->
+    <header class="navbar">
+        <div class="nav-container">
 
-<h1>studentischer Wochenplaner</h1>
+            <h1 class="logo">PlanApp</h1>
 
-<p>Homepage des studentischen Wochenplaners</p>
+            <!-- Desktop Navigation -->
+            <nav class="nav-links">
+                <!-- TODO add links-->
+                <a href="#" class="active">Startseite</a>
+                <a href="#">Kalender</a>
+                <a href="#">Einkaufslisten</a>
+                <a href="#">To-Do Listen</a>
+            </nav>
+
+            <!-- Aktionen Desktop -->
+            <div class="actions">
+                <!-- TODO add links-->
+                <button id="darkmode-toggle" aria-label="Theme umschalten">🌙</button>
+                <a href="#" class="btn">Anmelden</a>
+                <a href="#" class="btn-primary">Registrieren</a>
+            </div>
+
+            <!-- Burger Button für Mobile -->
+            <button class="burger" id="burger-btn" aria-label="Menü öffnen">☰</button>
+        </div>
+        <!-- Mobile Menü -->
+        <nav class="mobile-menu" id="mobile-menu">
+            <!-- TODO add links-->
+            <a href="#">Startseite</a>
+            <a href="#">Kalender</a>
+            <a href="#">Einkaufslisten</a>
+            <a href="#" id="darkmode-toggle-mobile">🌙 Darkmode</a>
+            <a href="#" class="btn">Anmelden</a>
+            <a href="#" class="btn-primary">Registrieren</a>
+        </nav>
+    </header>
+    <!-- Hauptbereich -->
+    <main>
+        <h2>Willkommen zurück, Max!</h2>
+        <p>Was möchten Sie heute planen?</p>
+
+        <div class="card-grid">
+            <div class="card">
+                <h3>📅 Kalender & Planer</h3>
+                <p>Verwalten Sie Ihre Termine, Ereignisse und Wochenpläne.</p>
+            </div>
+            <div class="card">
+                <h3>🛒 Einkaufslisten</h3>
+                <p>Erstellen und verwalten Sie Einkaufslisten mit Kategorien.</p>
+            </div>
+            <div class="card">
+                <h3>✅ To-Do Listen</h3>
+                <p>Organisieren Sie Ihre Aufgaben nach Prioritäten.</p>
+            </div>
+        </div>
+    </main>
 
 
-
-
+    <script src="js/script.js"></script>
 </body>
 </html>
