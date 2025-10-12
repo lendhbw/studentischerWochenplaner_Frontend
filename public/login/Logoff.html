@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>studentischer Wochenplaner</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <script src="../js/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+
+    <main class="form-container">
+        <div class="form-card">
+            <h2>Abmelden</h2>
+            <p class="form-description"> Wir sind traurig,<br />  Sie jetzt schon gehen zu sehen. 😢 <br /><br /> Sind Sie sicher, dass Sie schon gehen wollen? 😏</p>
+
+            <form id="login" novalidate>
+
+                <input type="button" onclick="location.href = '../Homepage.html';" class="btn-primary full-width" value="Ich möchte doch noch bleiben. 😌" />
+
+                <button type="submit" id="logoffButton" class="btn-primary full-width">Abmelden 👋🏻</button>
+
+            </form>
+
+        </div>
+    </main>
+    <script src="../js/Nav-Dark-Script.js"></script>
+    <!-- TODO anpassen-->
+    <script>
+    $("#logoffButton").click(function () {
+            var logoffUser = {
+                token: localStorage.getItem("stuplantoken")
+            };
+            console.log("Sending delete on login to BFF with user ...");
+            console.log(logoffUser);
+            $.ajax({
+                url: 'https://arcane-citadel-49909-0e3d7f7d2fb5.herokuapp.com/api/logoff',
+                type: 'delete',
+                dataType: 'json',
+                contentType: 'application/json',
+                success: function (data) {
+                    alert('We hope you have done all your planning! <br/> You are now logged off.');
+                    localStorage.setItem('stuplantoken', 'OFF');
+                },
+                data: JSON.stringify(logoffUser),
+                processData: false,
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert('I could not log you off.');
+                }
+            });
+        });</script>
+
+</body>
+</html>
