@@ -59,5 +59,54 @@
 
     window.validateLoginForm = validateLoginForm; // Expose to global scope
 
+    // ----- Register-Validierung -----
+    function validateRegisterForm(form) {
+        let valid = true;
+        const firstname = byId("userFirstname");
+        const lastname = byId("userLastname");
+        const email = byId("userEmail");
+        const password = byId("userPassword");
 
+        [firstname, lastname, email, password].forEach(clearError);
+
+        // Vorname
+        if (isEmpty(firstname)) {
+            showError(firstname, "Vorname darf nicht leer sein.");
+            valid = false;
+        } else if (!namePattern.test(firstname.value.trim())) {
+            showError(firstname, "Vorname darf keine Zahlen enthalten.");
+            valid = false;
+        }
+
+        // Nachname
+        if (isEmpty(lastname)) {
+            showError(lastname, "Nachname darf nicht leer sein.");
+            valid = false;
+        } else if (!namePattern.test(lastname.value.trim())) {
+            showError(lastname, "Nachname darf keine Zahlen enthalten.");
+            valid = false;
+        }
+
+        // E-Mail
+        if (isEmpty(email)) {
+            showError(email, "E-Mail darf nicht leer sein.");
+            valid = false;
+        } else if (!email.checkValidity()) {
+            showError(email, "Bitte eine gültige E-Mail eingeben.");
+            valid = false;
+        }
+
+        // Passwort
+        if (isEmpty(password)) {
+            showError(password, "Passwort darf nicht leer sein.");
+            valid = false;
+        } else if (password.value.length < 6) {
+            showError(password, "Passwort muss mindestens 6 Zeichen haben.");
+            valid = false;
+        }
+
+        return valid;
+    }
+
+       window.validateRegisterForm = validateRegisterForm; // Expose to global scope
 })();
