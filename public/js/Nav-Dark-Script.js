@@ -75,6 +75,6 @@
         window.addEventListener("auth:changed", updateNavbarAuthState);
     })();
 
-
+    updateNavbarAuthState();
 
 });
