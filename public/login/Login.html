@@ -117,10 +117,9 @@
                     localStorage.setItem('stuplantoken', '123');
                 }
             });
-            window.updateNavbarAuthState = updateNavbarAuthState; //globaler Scope
 
-            // login direkt aktualisiser später nur bei erfolg
-            updateNavbarAuthState();
+            // login direkt aktualisieren später nur bei erfolg
+            window.dispatchEvent(new Event('auth:changed'));
         });</script>
 
 

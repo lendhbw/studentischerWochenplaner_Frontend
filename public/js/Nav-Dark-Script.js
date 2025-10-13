@@ -46,25 +46,35 @@
     }
     
     // ============================================ Login/Logoff ============================================
-    function updateNavbarAuthState() {
-        const logoutLink = document.getElementById("logoutLink");
-        const loginLink = document.getElementById("loginLink");
-        const registerLink = document.getElementById("registerLink");
+    // /public/js/Nav-Dark-Script.js
+    (function () {
+        function updateNavbarAuthState() {
+            const logoutLink = document.getElementById("logoutLink");
+            const loginLink = document.getElementById("loginLink");
+            const registerLink = document.getElementById("registerLink");
 
-        const token = localStorage.getItem("stuplantoken");
-        const isLoggedIn = token && token.trim() !== "";
+            const token = localStorage.getItem("stuplantoken");
+            const isLoggedIn = !!(token && token.trim() !== "");
 
-        if (isLoggedIn) {
-            if (logoutLink) logoutLink.style.display = "inline-block";
-            if (loginLink) loginLink.style.display = "none";
-            if (registerLink) registerLink.style.display = "none";
-        } else {
-            if (logoutLink) logoutLink.style.display = "none";
-            if (loginLink) loginLink.style.display = "inline-block";
-            if (registerLink) registerLink.style.display = "inline-block";
+            if (logoutLink) logoutLink.style.display = isLoggedIn ? "inline-block" : "none";
+            if (loginLink) loginLink.style.display = isLoggedIn ? "none" : "inline-block";
+            if (registerLink) registerLink.style.display = isLoggedIn ? "none" : "inline-block";
         }
-    }
-    document.addEventListener("DOMContentLoaded", updateNavbarAuthState);
+
+        // global verfügbar machen
+        window.updateNavbarAuthState = updateNavbarAuthState;
+
+        // Beim ersten Laden anwenden (egal ob DOM schon fertig ist)
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", updateNavbarAuthState);
+        } else {
+            updateNavbarAuthState();
+        }
+
+        // Optional: auf Login-/Logout-Events reagieren
+        window.addEventListener("auth:changed", updateNavbarAuthState);
+    })();
+
 
 
 });
