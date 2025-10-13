@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
+ï»¿document.addEventListener("DOMContentLoaded", () => {
     const toggleDesktop = document.getElementById("darkmode-toggle");
     const toggleMobile = document.getElementById("darkmode-toggle-mobile");
     const burgerBtn = document.getElementById("burger-btn");
@@ -37,11 +37,34 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
     // ============================================ Mobile Nav ============================================ 
-    // Burger-Menü öffnen/schließen
+    // Burger-MenÃ¼ Ã¶ffnen/schlieÃŸen
     if (burgerBtn) {
         burgerBtn.addEventListener("click", () => {
             mobileMenu.style.display =
                 mobileMenu.style.display === "flex" ? "none" : "flex";
         });
     }
+    
+    // ============================================ Login/Logoff ============================================
+    function updateNavbarAuthState() {
+        const logoutLink = document.getElementById("logoutLink");
+        const loginLink = document.getElementById("loginLink");
+        const registerLink = document.getElementById("registerLink");
+
+        const token = localStorage.getItem("stuplantoken");
+        const isLoggedIn = token && token.trim() !== "";
+
+        if (isLoggedIn) {
+            if (logoutLink) logoutLink.style.display = "inline-block";
+            if (loginLink) loginLink.style.display = "none";
+            if (registerLink) registerLink.style.display = "none";
+        } else {
+            if (logoutLink) logoutLink.style.display = "none";
+            if (loginLink) loginLink.style.display = "inline-block";
+            if (registerLink) registerLink.style.display = "inline-block";
+        }
+    }
+    document.addEventListener("DOMContentLoaded", updateNavbarAuthState);
+
+
 });

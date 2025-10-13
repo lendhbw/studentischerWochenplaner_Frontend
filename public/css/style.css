@@ -114,6 +114,10 @@ main {
             color: var(--primary);
         }
 
+/* Verstecke Logout*/
+#logoutLink {
+    display: none;
+}
 /* ============================================ Buttons ============================================ */
 .actions .btn,
 .actions .btn-primary {
@@ -145,6 +149,23 @@ main {
         background: #2563eb;
     }
 
+/* ==== Dangerous Buttons ==== */
+
+.btn-danger {
+    background: #ef4444;
+    color: white;
+    border: none;
+    text-decoration: none;
+    padding: 0.4rem 0.9rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+    .btn-danger:hover {
+        background: #dc2626;
+    }
 
 /* ============================================ Karten ============================================ */
 .card-grid {

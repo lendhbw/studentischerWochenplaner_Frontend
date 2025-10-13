@@ -31,6 +31,7 @@
                 <button id="darkmode-toggle" aria-label="Theme umschalten">🌙</button>
                 <a href="#" class="btn">Anmelden</a>
                 <a href="../register/Registration.html" class="btn-primary">Registrieren</a>
+                <a href="login/Logoff.html" id="logoutLink" class="btn-danger">Abmelden</a>
             </div>
 
             <!-- Burger Button für Mobile -->
@@ -45,6 +46,7 @@
             <a href="#" id="darkmode-toggle-mobile">🌙 Darkmode</a>
             <a href="#" class="btn">Anmelden</a>
             <a href="../register/Registration.html" class="btn-primary">Registrieren</a>
+            <a href="login/Logoff.html" id="logoutLink" class="btn-danger">Abmelden</a>
         </nav>
     </header>
 
@@ -115,6 +117,8 @@
                     localStorage.setItem('stuplantoken', '123');
                 }
             });
+            // login direkt aktualisiser später nur bei erfolg
+            updateNavbarAuthState();
         });</script>
 
 

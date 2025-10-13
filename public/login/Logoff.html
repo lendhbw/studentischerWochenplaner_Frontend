@@ -19,7 +19,7 @@
 
                 <input type="button" onclick="location.href = '../Homepage.html';" class="btn-primary full-width" value="Ich möchte doch noch bleiben. 😌" />
 
-                <button type="submit" id="logoffButton" class="btn-primary full-width">Abmelden 👋🏻</button>
+                <button type="submit" id="logoffButton" class="btn-danger full-width">Abmelden 👋🏻</button>
 
             </form>
 
@@ -42,13 +42,17 @@
                 success: function (data) {
                     alert('We hope you have done all your planning! <br/> You are now logged off.');
                     localStorage.setItem('stuplantoken', 'OFF');
+                    window.location.href = '../Homepage.html';
                 },
                 data: JSON.stringify(logoffUser),
                 processData: false,
                 error: function (xhr, ajaxOptions, thrownError) {
                     alert('I could not log you off.');
+                    // TODO nach Backend entfernen
+                    window.location.href = "../Homepage.html";
                 }
             });
+        updateNavbarAuthState();
         });</script>
 
 </body>
