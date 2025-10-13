@@ -61,7 +61,10 @@
                     
                     // Logoff aktualisieren
                     window.dispatchEvent(new Event('auth:changed'));
-                    //window.location.href = "../Homepage.html";
+                    // kleine Verzögerung, damit localStorage sicher geschrieben ist
+                    setTimeout(() => {
+                        window.location.href = "../Homepage.html";
+                    }, 300);
                     
                 }
             });
