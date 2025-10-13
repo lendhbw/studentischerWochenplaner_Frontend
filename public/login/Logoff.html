@@ -45,10 +45,8 @@
                     // Logoff aktualisieren
                     window.dispatchEvent(new Event('auth:changed'));
                     alert('We hope you have done all your planning! <br/> You are now logged off.');
-                    // kleine Verzögerung, damit localStorage sicher geschrieben ist
-                    setTimeout(() => {
-                        window.location.href = "../Homepage.html";
-                    }, 300);
+                    window.location.href = "../Homepage.html";
+                   
                 },
                 data: JSON.stringify(logoffUser),
                 processData: false,
@@ -61,9 +59,7 @@
                     
                     // Logoff aktualisieren
                     window.dispatchEvent(new Event('auth:changed'));
-                    // kleine Verzögerung, damit localStorage sicher geschrieben ist
-                    
-                        window.location.href = "../Homepage.html";
+                    window.location.href = "../Homepage.html";
                    
                     
                 }
