@@ -51,10 +51,12 @@
                     // TODO nach Backend entfernen
                     localStorage.setItem('stuplantoken', 'OFF');
                     window.location.href = "../Homepage.html";
+                    alert('I could not log you off.');
                 }
             });
             // Logoff aktualisieren
         window.dispatchEvent(new Event('auth:changed'));
+        alert('Hello.');
         });</script>
 
 </body>
