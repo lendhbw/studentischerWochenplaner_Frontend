@@ -109,17 +109,20 @@
                 success: function (data) {
                     alert('You are now logged on.');
                     localStorage.setItem('stuplantoken', data.token);
+                    // login direkt aktualisieren 
+                    window.dispatchEvent(new Event('auth:changed'));
                 },
                 data: JSON.stringify(loginUser),
                 processData: false,
                 error: function (xhr, ajaxOptions, thrownError) {
                     alert('I could not log you in.');
                     localStorage.setItem('stuplantoken', '123');
+                    // login direkt aktualisieren später nur bei erfolg
+                    window.dispatchEvent(new Event('auth:changed'));
                 }
             });
 
-            // login direkt aktualisieren später nur bei erfolg
-            window.dispatchEvent(new Event('auth:changed'));
+            
         });</script>
 
 

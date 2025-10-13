@@ -40,23 +40,27 @@
                 dataType: 'json',
                 contentType: 'application/json',
                 success: function (data) {
+                    console.log("Logout SUCCESS callback");
                     alert('We hope you have done all your planning! <br/> You are now logged off.');
                     localStorage.setItem('stuplantoken', 'OFF');
+                    // Logoff aktualisieren
+                    window.dispatchEvent(new Event('auth:changed'));
                     window.location.href = '../Homepage.html';
                 },
                 data: JSON.stringify(logoffUser),
                 processData: false,
                 error: function (xhr, ajaxOptions, thrownError) {
+                    console.log("Logout ERROR callback", xhr.status, thrownError);
                     alert('I could not log you off.');
                     // TODO nach Backend entfernen
                     localStorage.setItem('stuplantoken', 'OFF');
-                    window.location.href = "../Homepage.html";
-                    alert('I could not log you off.');
+                    // Logoff aktualisieren
+                    window.dispatchEvent(new Event('auth:changed'));
+                    //window.location.href = "../Homepage.html";
+                    
                 }
             });
-            // Logoff aktualisieren
-        window.dispatchEvent(new Event('auth:changed'));
-        alert('Hello.');
+            
         });</script>
 
 </body>
