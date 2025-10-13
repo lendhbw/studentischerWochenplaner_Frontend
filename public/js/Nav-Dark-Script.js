@@ -54,7 +54,7 @@
             const registerLink = document.getElementById("registerLink");
 
             const token = localStorage.getItem("stuplantoken");
-            const isLoggedIn = !!(token && token.trim() !== "");
+            const isLoggedIn = !!(token && token.trim() !== "" && token && token.trim() !== "OFF");
 
             if (logoutLink) logoutLink.style.display = isLoggedIn ? "inline-block" : "none";
             if (loginLink) loginLink.style.display = isLoggedIn ? "none" : "inline-block";
